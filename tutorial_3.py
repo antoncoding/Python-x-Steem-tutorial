@@ -13,6 +13,8 @@ elif BMI < 18:
 else:
     print('You are just fit!')
 
+
+
 # if BMI > 24:
 #     print('You are overweight!')
 # else: # BMI < 24 的情況下
@@ -20,3 +22,4 @@ else:
 #         print('You are underweight!')
 #     else:
 #         print('You are just fit!')
+
