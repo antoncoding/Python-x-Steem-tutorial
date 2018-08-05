@@ -14,7 +14,6 @@ account_info = s.get_account(account_name)
 # 	print(value)
 
 post_count = account_info['post_count']
-steem_balance = account_info['balance']
 voting_power = account_info['voting_power']
 reputation = account_info['reputation']
 last_post_date = account_info['last_root_post']
