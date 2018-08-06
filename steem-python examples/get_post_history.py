@@ -29,4 +29,4 @@ for i in range(1, num_iteration+1): # i = 1,2,3,...num_iteration
 					
 					print('[Title] {}\n   [Permlink] {}'.format(_title, _permlink))
 
-print('You have authored {} posts on Steemits!'.format(len(permlink_list)))
+print('@{} have authored {} posts on Steemit!'.format(account_name, len(permlink_list)))
