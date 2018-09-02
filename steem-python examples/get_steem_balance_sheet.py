@@ -4,6 +4,8 @@ from steem.account import Account
 import sys
 import datetime
 
+# Example Command: python get_steem_balance_sheet.py antonsteemit 2018-08-01 2018-08-31
+
 account_name = sys.argv[1]
 start_date = datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d')
 end_date = datetime.datetime.strptime(sys.argv[3], '%Y-%m-%d')
