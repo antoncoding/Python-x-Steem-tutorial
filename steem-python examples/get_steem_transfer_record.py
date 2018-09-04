@@ -20,20 +20,21 @@ total_operations = latest_operation[0][0]
 num_iteration = int(total_operations/1000) + 1 # Num of times we have to request get_account_history
 
 transfer_file = open('output/transfers_{}_memo.csv'.format(account_name), 'w')
-transfer_file.write('Timestamp,Transfer Type,Dealer,STEEM,SBD,TX ID\n')
+transfer_file.write('Timestamp,Transfer Type,Dealer,STEEM,SBD,TX ID,memo\n')
 
 for i in range(1, num_iteration+1):
     _index_from = i*1000
     history = target_account.get_account_history(index=_index_from,limit=1000, order=1)
     for operation in history:
-        # Check Transaction Timestamp
-        timestamp = datetime.datetime.strptime(operation['timestamp'],"%Y-%m-%dT%H:%M:%S")
-        if timestamp < start_date:
-            continue
-        elif timestamp > end_date:
-            break
-
         if operation['type'] =='transfer':
+            
+            # Check if Transaction Timestamp is in the given period of time
+            timestamp = datetime.datetime.strptime(operation['timestamp'],"%Y-%m-%dT%H:%M:%S")
+            if timestamp < start_date:
+                continue
+            elif timestamp > end_date:
+                break
+
             # Classify transfers into IN transfers and OUT transfers
             if operation['from'] == account_name:
                 dealer = operation['to']
@@ -54,7 +55,7 @@ for i in range(1, num_iteration+1):
                 memo = ''
             
             # Write File
-            if Amount(operation['amount']).asset =='Steem':
+            if Amount(operation['amount']).asset =='STEEM':
                 transfer_file.write('{},{},{},{},{},{},{}\n'.format(operation['timestamp'],transfer_type, dealer, amount,0,operation['trx_id'], memo))
             else:
                 transfer_file.write('{},{},{},{},{},{},{}\n'.format(operation['timestamp'],transfer_type, dealer,0, amount,operation['trx_id'], memo))

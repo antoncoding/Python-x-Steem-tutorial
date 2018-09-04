@@ -44,7 +44,7 @@ for i in range(1, num_iteration+1): # i =0, 1,2,3,...num_iteration
                 dealer = operation['from']
                 transfer_type = 'transfer from'
                 amount = Amount(operation['amount']).amount
-            if Amount(operation['amount']).asset =='Steem':
+            if Amount(operation['amount']).asset =='STEEM':
                 transfer_file.write('{},{},{},{},{},{}\n'.format(operation['timestamp'],transfer_type, dealer, amount,0,operation['trx_id']))
             else:
                 transfer_file.write('{},{},{},{},{},{}\n'.format(operation['timestamp'],transfer_type, dealer,0, amount,operation['trx_id']))
